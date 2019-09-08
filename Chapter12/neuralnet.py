@@ -93,10 +93,10 @@ class NeuralNetMLP(object):
     def _initialize_weights(self):
         """Initialize weights with small random numbers."""
         w1 = np.random.uniform(-1.0, 1.0,
-                               size=self.n_hidden*(self.n_features + 1))
+                               size=self.n_hidden * (self.n_features + 1))
         w1 = w1.reshape(self.n_hidden, self.n_features + 1)
         w2 = np.random.uniform(-1.0, 1.0,
-                               size=self.n_output*(self.n_hidden + 1))
+                               size=self.n_output * (self.n_hidden + 1))
         w2 = w2.reshape(self.n_output, self.n_hidden + 1)
         return w1, w2
 
@@ -163,13 +163,13 @@ class NeuralNetMLP(object):
 
     def _L2_reg(self, lambda_, w1, w2):
         """Compute L2-regularization cost"""
-        return (lambda_/2.0) * (np.sum(w1[:, 1:] ** 2) +
-                                np.sum(w2[:, 1:] ** 2))
+        return (lambda_ / 2.0) * (np.sum(w1[:, 1:] ** 2) +
+                                  np.sum(w2[:, 1:] ** 2))
 
     def _L1_reg(self, lambda_, w1, w2):
         """Compute L1-regularization cost"""
-        return (lambda_/2.0) * (np.abs(w1[:, 1:]).sum() +
-                                np.abs(w2[:, 1:]).sum())
+        return (lambda_ / 2.0) * (np.abs(w1[:, 1:]).sum() +
+                                  np.abs(w2[:, 1:]).sum())
 
     def _get_cost(self, y_enc, output, w1, w2):
         """Compute cost function.
@@ -294,10 +294,10 @@ class NeuralNetMLP(object):
         for i in range(self.epochs):
 
             # adaptive learning rate
-            self.eta /= (1 + self.decrease_const*i)
+            self.eta /= (1 + self.decrease_const * i)
 
             if print_progress:
-                sys.stderr.write('\rEpoch: %d/%d' % (i+1, self.epochs))
+                sys.stderr.write('\rEpoch: %d/%d' % (i + 1, self.epochs))
                 sys.stderr.flush()
 
             if self.shuffle:
@@ -306,7 +306,6 @@ class NeuralNetMLP(object):
 
             mini = np.array_split(range(y_data.shape[0]), self.minibatches)
             for idx in mini:
-
                 # feedforward
                 a1, z2, a2, z3, a3 = self._feedforward(X_data[idx],
                                                        self.w1,
