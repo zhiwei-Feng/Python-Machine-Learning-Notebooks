@@ -1,2 +1,4 @@
 # Python-Machine-Learning-Notebooks
-The notebooks for &lt;python machine learning>
+
+## material
+[Amazon](https://www.amazon.com/Python-Machine-Learning-scikit-learn-TensorFlow/dp/1787125939)
